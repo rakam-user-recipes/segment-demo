@@ -13,7 +13,7 @@ target-path: "target"
 models:
   segment:
     vars:
-      segment_page_views_table: "\"segment\".\"rakam_ui\".\"pages\""
+      segment_page_views_table: segment.rakam_ui.pages
       segment_sessionization_trailing_window: 3
       segment_inactivity_cutoff: "30 * 60"
       segment_pass_through_columns: []
