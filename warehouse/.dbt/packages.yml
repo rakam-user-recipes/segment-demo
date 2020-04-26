@@ -1,0 +1,4 @@
+---
+packages:
+- package: "https://github.com/fishtown-analytics/segment"
+  version: "0.2.5"

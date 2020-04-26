@@ -1,0 +1,43 @@
+name: dbt_warehouse
+
+on:
+  repository_dispatch:
+    types: [trigger_dbt_warehouse]
+  push:
+    branches:
+      - master
+    paths:
+      - 'warehouse/.dbt/**'
+
+jobs:
+  dbt:
+    name: dbt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: buremba/get-changed-files-with-regex@0.5
+        if: github.event_name == 'push' # only valid when a new commit is pushed
+        name: Changed Files Exporter with Regex
+        id: changedfiles
+        with:
+          token: ${{ github.token }}
+          pattern: 'warehouse\/.dbt\/models\/([A-Za-z0-9_]+)\.sql$'
+      - uses: actions/setup-python@v1
+        with:
+          python-version: "3.8.2"
+      - name: Get Database Credentials
+        run: echo '${{secrets.dbt_warehouse_profiles_yml}}' > warehouse/.dbt/profiles.yml
+      - name: Install DBT
+        run: pip3 install dbt
+      - name: Install DBT Dependencies
+        run: cd warehouse/.dbt && dbt deps --profiles-dir ./
+      - name: Run DBT [Full Refresh] # perform full-refresh for new/modified models
+        if: github.event_name == 'push' && (steps.changedfiles.outputs.modified != '' || steps.changedfiles.outputs.added != '')
+        run: cd warehouse/.dbt && dbt run --profiles-dir ./ --full-refresh --models ${{ steps.changedfiles.outputs.modified }} ${{ steps.changedfiles.outputs.added }}
+      - name: Run DBT [Scheduled]
+        if: github.event_name == 'schedule'
+        run: cd warehouse/.dbt && dbt run --profiles-dir ./
+      - name: Run DBT [Manuel]
+        if: github.event_name == 'repository_dispatch'
+        run: cd warehouse/.dbt && dbt run --profiles-dir ./ ${{ github.event.client_payload.args }}
+
