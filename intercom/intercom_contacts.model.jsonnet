@@ -1,0 +1,317 @@
+{
+  name: 'intercom_contacts',
+  hidden: false,
+  target: std.mergePatch(std.extVar('schema'), { table: 'contacts' }),
+  label: 'Leads',
+  category: 'Intercom',
+  description: 'Leads (previously known as Contacts) are useful for representing logged-out users of your application For more info, check out the Intercom docs',
+  mappings: {
+    eventTimestamp: 'received_at',
+    incremental: 'user_id',
+    userId: 'user_id',
+  },
+  dimensions: {
+    id: {
+      pivot: false,
+      type: 'string',
+      column: 'id',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    received_at: {
+      pivot: false,
+      timeframes: [
+        'hour',
+        'day',
+        'week',
+        'month',
+        'year',
+        'hourOfDay',
+        'dayOfMonth',
+        'weekOfYear',
+        'monthOfYear',
+        'quarterOfYear',
+        'dayOfWeek',
+      ],
+      type: 'timestamp',
+      column: 'received_at',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    uuid_ts: {
+      pivot: false,
+      timeframes: [
+        'hour',
+        'day',
+        'week',
+        'month',
+        'year',
+        'hourOfDay',
+        'dayOfMonth',
+        'weekOfYear',
+        'monthOfYear',
+        'quarterOfYear',
+        'dayOfWeek',
+      ],
+      type: 'timestamp',
+      column: 'uuid_ts',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    created_at: {
+      pivot: false,
+      timeframes: [
+        'hour',
+        'day',
+        'week',
+        'month',
+        'year',
+        'hourOfDay',
+        'dayOfMonth',
+        'weekOfYear',
+        'monthOfYear',
+        'quarterOfYear',
+        'dayOfWeek',
+      ],
+      type: 'timestamp',
+      column: 'created_at',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    unsubscribed_from_emails: {
+      pivot: false,
+      type: 'boolean',
+      column: 'unsubscribed_from_emails',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    name: {
+      pivot: false,
+      type: 'string',
+      column: 'name',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    updated_at: {
+      pivot: false,
+      timeframes: [
+        'hour',
+        'day',
+        'week',
+        'month',
+        'year',
+        'hourOfDay',
+        'dayOfMonth',
+        'weekOfYear',
+        'monthOfYear',
+        'quarterOfYear',
+        'dayOfWeek',
+      ],
+      type: 'timestamp',
+      column: 'updated_at',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    email: {
+      pivot: false,
+      type: 'string',
+      column: 'email',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    last_request_at: {
+      pivot: false,
+      timeframes: [
+        'hour',
+        'day',
+        'week',
+        'month',
+        'year',
+        'hourOfDay',
+        'dayOfMonth',
+        'weekOfYear',
+        'monthOfYear',
+        'quarterOfYear',
+        'dayOfWeek',
+      ],
+      type: 'timestamp',
+      column: 'last_request_at',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    user_id: {
+      pivot: false,
+      type: 'string',
+      column: 'user_id',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    location_timezone: {
+      pivot: false,
+      type: 'string',
+      column: 'location_timezone',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    location_continent_code: {
+      pivot: false,
+      type: 'string',
+      column: 'location_continent_code',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    location_country_name: {
+      pivot: false,
+      type: 'string',
+      column: 'location_country_name',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    location_region_name: {
+      pivot: false,
+      type: 'string',
+      column: 'location_region_name',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    location_city_name: {
+      pivot: false,
+      type: 'string',
+      column: 'location_city_name',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    location_postal_code: {
+      pivot: false,
+      type: 'string',
+      column: 'location_postal_code',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    user_agent_data: {
+      pivot: false,
+      type: 'string',
+      column: 'user_agent_data',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    last_seen_ip: {
+      pivot: false,
+      type: 'string',
+      column: 'last_seen_ip',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    location_country_code: {
+      pivot: false,
+      type: 'string',
+      column: 'location_country_code',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    avatar_image_url: {
+      pivot: false,
+      type: 'string',
+      column: 'avatar_image_url',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+    custom_job_title: {
+      pivot: false,
+      type: 'string',
+      column: 'custom_job_title',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      hidden: false,
+    },
+  },
+  measures: {
+    count_all_rows: {
+      description: 'Counts All Rows',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      aggregation: 'count',
+      type: 'double',
+      hidden: false,
+    },
+    sum_of_location_latitude: {
+      reportOptions: {
+        formatNumbers: true,
+      },
+      column: 'location_latitude',
+      aggregation: 'sum',
+      type: 'double',
+      hidden: false,
+    },
+    sum_of_location_longitude: {
+      reportOptions: {
+        formatNumbers: true,
+      },
+      column: 'location_longitude',
+      aggregation: 'sum',
+      type: 'double',
+      hidden: false,
+    },
+    sum_of_session_count: {
+      reportOptions: {
+        formatNumbers: true,
+      },
+      column: 'session_count',
+      aggregation: 'sum',
+      type: 'double',
+      hidden: false,
+    },
+    count_unique_users: {
+      description: 'Counts Unique Users',
+      reportOptions: {
+        formatNumbers: true,
+      },
+      column: 'user_id',
+      aggregation: 'countUnique',
+      type: 'double',
+      hidden: false,
+    },
+  },
+}
